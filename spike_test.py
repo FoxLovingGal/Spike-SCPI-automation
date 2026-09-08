@@ -294,7 +294,7 @@ def main():
             print(f"Curent center freq: {analyzer.get_cent()}")
             print(f"Current stop freq: {analyzer.get_stop()}")
             print(f"Current reference level: {analyzer.get_ref_levels()}{analyzer.get_unit()}")
-            analyzer.set_directory("/home/research/Documents/SCPI_automation/SCPI_automation")
+            analyzer.set_directory("INSERT DIRECTORY")
             analyzer.set_cent(12000000000)
             analyzer.set_span(500000000)
             analyzer.record_time(10)
