@@ -62,7 +62,7 @@ class RunSpike:
 
 
 
-    #blatantly stolen from pi_rotor_communicator
+    
     def wait_until_sample_time(self, sample_time, stop_event=None):
         """
         Wait until the sample timestamp.
