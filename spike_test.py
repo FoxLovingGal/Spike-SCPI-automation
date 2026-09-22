@@ -227,7 +227,7 @@ def main():
 
     def set_span_test():
         first = analyzer.get_span()
-        analyzer.set_span(float(first) + 100)
+        analyzer.set_span(float(first) - 100)
         second = analyzer.get_span()
         if(first == second):
             return False
@@ -247,7 +247,7 @@ def main():
 
     def set_span_high_test():
         try:
-            analyzer.set_span(6000000001)
+            analyzer.set_span(15000000001)
             return False
         except ValueError:
             return True
@@ -294,12 +294,32 @@ def main():
             print(f"Curent center freq: {analyzer.get_cent()}")
             print(f"Current stop freq: {analyzer.get_stop()}")
             print(f"Current reference level: {analyzer.get_ref_levels()}{analyzer.get_unit()}")
-            analyzer.set_directory("INSERT DIRECTORY")
+            analyzer.set_directory("/home/research/Documents/SCPI_automation/SCPI_automation")
             analyzer.set_cent(12000000000)
             analyzer.set_span(500000000)
             analyzer.record_time(10)
 
     sweep_recording()
+
+    def sample_rate_test():
+        try:
+            analyzer.set_sample_rate(61.440)
+            analyzer.set_sample_rate(30.720)
+            analyzer.set_sample_rate(15.360)
+            analyzer.set_sample_rate(7.680)
+            analyzer.set_sample_rate(3.840)
+            analyzer.set_sample_rate(0.960)
+            analyzer.set_sample_rate(0.480)
+            analyzer.set_sample_rate(0.240)
+            analyzer.set_sample_rate(0.120)
+            analyzer.set_sample_rate(0.060)
+            analyzer.set_sample_rate(0.030)
+            return True
+        except ValueError:
+            print("Was unable to set all sample rates needed for the SP145")
+            return False
+
+    run_tests("Sample rate test", sample_rate_test)
 
     def iq_capture_test():
         analyzer.set_measurement_mode("ZS")
@@ -309,11 +329,12 @@ def main():
         analyzer.set_iq_sweep_time(0.001)
         analyzer.set_sample_rate(61.440)
         analyzer.set_cent(12000000000)
-        analyzer.single_capture("test_capture_3.iq")
+        analyzer.single_capture("test_capture_3.sigmf")
 
 
     iq_capture_test()
 
+    #wip
     def iq_recording_test():
         analyzer.set_measurement_mode("ZS")
         if(not analyzer.get_auto_ifbwidth_status):
@@ -324,7 +345,7 @@ def main():
         analyzer.set_cent(12000000000)
         analyzer.record_iq(save_file="iq_record3.iq", duration=20)
 
-    iq_recording_test()
+    
         
 
         
